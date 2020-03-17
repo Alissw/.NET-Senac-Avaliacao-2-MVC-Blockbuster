@@ -1,22 +1,24 @@
 using System;
+using System.Collections.Generic;
 using Models;
 
 namespace Controllers{
-    class Locacaos
+    class LocacaosControllers
     {
-        public static void adicionarLocacao(int idLocacao, Cliente cliente){
-            new Locacao(idLocacao, cliente);
-        }
-        public static void dadosLocacao(){
-            Locacao.dadosLocacao();
+        public static Locacao adicionarLocacao(int idLocacao, Cliente cliente){
+            return new Locacao(idLocacao, cliente);
         }
 
-        public static void addFilme(Filme filme){
-            Locacao.addFilme(filme);
+        public static void adicionarLocacao(Locacao locacao){
+            Locacao.adicionarLocacao(locacao);
         }
 
-        public static void mostrarFilme(){
-            Locacao.mostrarFilme();
+        public static void adicionarFilme(Locacao locacao, Filme filme){
+            locacao.adicionarFilme(filme);
+        }
+
+        public static List<Locacao> mostrarLocacaos(){
+           return Locacao.mostrarLocacaos();
         }        
         public static int QtdFilmeLocados(){
             return Locacao.QtdFilmeLocados();

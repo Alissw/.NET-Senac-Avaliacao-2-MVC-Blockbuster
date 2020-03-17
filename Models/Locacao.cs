@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Models;
 
 namespace Models
 {
@@ -8,46 +9,59 @@ namespace Models
         public static int idLocacao {get; set;}
         static Cliente Cliente;
         public static DateTime dataLocacao = DateTime.Now;
-        static List<Filme> filmes = new List<Filme>();
+
+        public List<Filme> filmes = new List<Filme>();
+        static List<Locacao> locacaos = new List<Locacao>();
         public Locacao(int idLocacao, Cliente cliente)
         {
             Locacao.idLocacao = idLocacao;
             Cliente = cliente;
+            adicionarLocacao(this);
+            
         }
-        //Mostra os dados da locação
-        public static void dadosLocacao()
-        {
 
-            Console.WriteLine("###Locações feitas###");
-            Console.WriteLine("ID locação " + Locacao.idLocacao);
-            Console.WriteLine("Data da locação: " + Locacao.dataLocacao.ToString("dd/MM/yyyy"));
-            Console.WriteLine("Data da devolução: " + Devolver());
-            Console.WriteLine("Dias locados: " + Cliente.diasDevolucao);
-            Console.WriteLine("Quantidade de filmes locados: " + QtdFilmeLocados());
-            Console.WriteLine();
-            Console.WriteLine("###Filmes###");
-            mostrarFilme();
-            Console.WriteLine("-------------------------------------------------");
-            Console.WriteLine("Total a pagar: R$ " + valorTotal().ToString("F"));
-        }
-        //Adiciona um filme
-        public static void addFilme(Filme filme)
-        {
+        public void adicionarFilme(Filme filme){
             filmes.Add(filme);
         }
-        //Mostra dados breve do(s) filme(s) locado(s)
-        public static void mostrarFilme()
+        
+        //Mostra os dados da locação
+        public override string ToString()
         {
-            System.Text.StringBuilder txt = new System.Text.StringBuilder();
-            foreach (Filme filme in filmes)
-            {
-                Console.WriteLine(filme.nomeFilme + ", R$ " + filme.valorLocacao.ToString("F"));
-            }
+
+            return
+             ("###Locações feitas###" + "\n")
+            +("ID locação: ")
+            + (Locacao.idLocacao + "\n")
+            +("Data da locação: ")
+            + (Locacao.dataLocacao.ToString("dd/MM/yyyy")+ "\n")
+            +("Data da devolução: ")
+            + (Devolver())
+            +("Dias locados: " )
+            + (Cliente.diasDevolucao + "\n")
+            +("Quantidade de filmes locados: ")
+            + (QtdFilmeLocados() + "\n")
+            +("###Filmes###" + "\n")
+            +(filmes.ForEach( filmes =>  filmes))
+            +( "\n")
+           +("-------------------------------------------------")
+           +("Total a pagar: R$ ")
+           + (valorTotal().ToString("F"));
+        }
+        //Adiciona um filme
+        public static void adicionarLocacao(Locacao locacao)
+        {
+            locacaos.Add(locacao);
+        }
+        //Mostra dados breve do(s) filme(s) locado(s)
+        public static List<Locacao> mostrarLocacaos()
+        {
+            return locacaos;
+            
         }
        //Mostra quantidade de filmes locados 
         public static int QtdFilmeLocados()
         {
-            return Locacao.filmes.Count;
+            return Filme.mostrarFilmes().Count;
         }
         //Calcula data de devolução
         public static String Devolver()
@@ -60,7 +74,7 @@ namespace Models
         public static float valorTotal()
         {
             float valorTotal = 0;
-            foreach (Filme filme in filmes)
+            foreach (Filme filme in Filme.mostrarFilmes())
             {
                 valorTotal += filme.valorLocacao;
             }

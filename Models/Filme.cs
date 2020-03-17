@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 
 namespace Models
 {
@@ -12,6 +13,8 @@ namespace Models
        public int estoque {get; set;}
        public int qtdLocado {get; set;}
 
+       static List<Filme> filmes = new List<Filme>();
+
         public Filme(int idFilme, String nomeFilme, String dataLancamento, String sinopse, float valorLocacao, int estoque, int qtdLocado)
         {
             this.idFilme = idFilme;
@@ -21,6 +24,24 @@ namespace Models
             this.valorLocacao = valorLocacao;
             this.estoque = estoque;
             this.qtdLocado = 0;
+            adicionarFilme(this);
+        }
+
+        public static void adicionarFilme(Filme filme){
+            filmes.Add(filme);
+        }
+
+        public static List<Filme> mostrarFilmes(){
+            return filmes;
+        }
+
+        public override string ToString(){
+            return
+            ("##DADOS DO FILME##")
+            +("Id filme: " + idFilme)
+            +("Nome filme: " + nomeFilme)
+            +("Data lancamento: ")
+            +("Valor locação: " + valorLocacao);
         }
     }
 }

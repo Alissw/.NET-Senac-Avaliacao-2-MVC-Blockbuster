@@ -8,8 +8,12 @@ namespace Views{
     {
         public static void mostraClientes(){
             foreach(Cliente cliente in ClienteControllers.mostraClientes()){
-                Console.WriteLine(ClienteControllers.mostraClientes());
+                Console.WriteLine(cliente);
             }
+        }
+        
+        public static Cliente inserirCliente(int idCliente, string nomeCliente, string dataNascimento, string cpf, int diasDevolucao){
+            return ClienteControllers.adicionarCliente(idCliente, nomeCliente, dataNascimento, cpf, diasDevolucao);
         }
     }
 }

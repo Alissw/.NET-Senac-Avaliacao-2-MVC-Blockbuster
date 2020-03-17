@@ -19,6 +19,8 @@ namespace Models
             this.dataNascimento = dataNascimento;
             this.cpf = cpf;
             this.diasDevolucao = diasDevolucao;
+
+            adicionarCliente(this);
         }
 
         public static void adicionarCliente(Cliente cliente){
@@ -29,15 +31,15 @@ namespace Models
             return clientes;
         }
 
-        public String toString()
+        public override string ToString()
         {
             return 
-            ("###Dados do cliente###")
-            +("ID do cliente: " + this.idCliente)
-            +("Nome............: " + this.nomeCliente)
-            +("Nascido em......: " + this.dataNascimento)
-            +("CPF.............: " + this.cpf)
-            +("-----------------------------------------------------------------");
+            ("##Dados do cliente##")
+            +("ID do cliente: " + this.idCliente + "\n")
+            +("Nome............: " + this.nomeCliente + "\n")
+            +("Nascido em......: " + this.dataNascimento + "\n")
+            +("CPF.............: " + this.cpf + "\n")
+            +("-----------------------------------------------------------------\n");
             
             }
     }

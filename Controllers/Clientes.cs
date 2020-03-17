@@ -5,8 +5,8 @@ using Models;
 namespace Controllers{
     class ClienteControllers
     {
-        public static void adicionarCliente(int idCliente, string nomeCliente, string dataNascimento, string cpf, int diasDevolucao){
-            new Cliente(idCliente, nomeCliente, dataNascimento, cpf, diasDevolucao);
+        public static Cliente adicionarCliente(int idCliente, string nomeCliente, string dataNascimento, string cpf, int diasDevolucao){
+            return new Cliente(idCliente, nomeCliente, dataNascimento, cpf, diasDevolucao);
         }
 
         public static List<Cliente> mostraClientes(){

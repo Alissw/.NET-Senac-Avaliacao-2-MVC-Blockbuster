@@ -4,11 +4,14 @@ using Controllers;
 using Models;
 
 namespace Views{
-    class ClienteViews
+    class FilmesView
     {
-        public static void mostraClientes(){
-            foreach(Cliente cliente in ClienteControllers.mostraClientes()){
-                Console.WriteLine(ClienteControllers.mostraClientes());
+        public static Filme inserirFilme(int idFilme, String nomeFilme, String dataLancamento, String sinopse, float valorLocacao, int estoque, int qtdLocado){
+            return FilmesControllers.adicionarFilmes(idFilme, nomeFilme, dataLancamento, sinopse, valorLocacao, estoque, qtdLocado);
+        }
+        public static void mostraFilmes(){
+            foreach(Filme filmes in FilmesControllers.mostrarFilmes()){
+                Console.WriteLine(filmes.ToString());
             }
         }
     }
